@@ -5,15 +5,18 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+
+import java.io.Console;
 
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       /* SQLiteDatabase db = openOrCreateDatabase("db",MODE_PRIVATE,null);
+       /*SQLiteDatabase db = openOrCreateDatabase("db",MODE_PRIVATE,null);
 
         String sql = "CREATE TABLE IF NOT EXISTS users(id INTERGER PRIMARY KEY AUTOINCREMENT, fullname varchar, username varchar, pwd varchar)";
         db.execSQL(sql);
@@ -36,7 +39,7 @@ public class MainActivity extends Activity {
 
             Log.i("INFO","id="+id+"&fullname="+fullname+"&username="+username);
         }while (cursor.moveToNext());
-        db.close();*/
+        db.close();
 
 
         OpenHelper openHelper = new OpenHelper(getApplicationContext());
@@ -44,6 +47,15 @@ public class MainActivity extends Activity {
 
         sqLiteDatabase.rawQuery("SELECT * FROM users WHERE id = ?",new String[]{"1"});
 
-        sqLiteDatabase.query("posts",new String[]{"id","title"},null,null,null,null,null);
+        sqLiteDatabase.query("posts",new String[]{"id","title"},null,null,null,null,null);*/
+        Cursor cursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                new String[]{MediaStore.Images.Media._ID, MediaStore.Images.Media.DISPLAY_NAME},null,null,null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        do {
+            Log.e("ID",cursor.getInt(cursor.getColumnIndex(MediaStore.Images.Media._ID))+"");
+            Log.i("NAME",cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME)));
+        }while (cursor.moveToNext());
     }
 }

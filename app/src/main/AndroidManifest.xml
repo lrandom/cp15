@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="vn.niit.demosqlite">
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,6 +11,10 @@
         android:theme="@style/AppTheme" >
 
         <activity android:name=".MainActivity">
+
+        </activity>
+
+        <activity android:name=".DemoStorage">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER"></category>
                 <action android:name="android.intent.action.MAIN"></action>
