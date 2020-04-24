@@ -15,10 +15,16 @@
         </activity>
 
         <activity android:name=".DemoStorage">
+
+        </activity>
+
+        <activity android:name=".notes.ListNoteActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER"></category>
                 <action android:name="android.intent.action.MAIN"></action>
             </intent-filter>
         </activity>
+
+        <activity android:name=".notes.AddNoteActivity"></activity>
     </application>
 </manifest>
