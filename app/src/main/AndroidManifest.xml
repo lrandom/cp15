@@ -25,6 +25,20 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".notes.AddNoteActivity"></activity>
+        <activity android:name=".notes.AddNoteActivity">
+
+
+        </activity>
+
+<!--          <receiver android:enabled="true" android:name=".demoreceiver.MyBroadCastReceiver">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.AIRPLANE_MODE"></action>-->
+<!--                <action android:name="TEST"></action>-->
+<!--                <action android:name="SERVICE"></action>-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
+
+
+        <service android:name=".demoreceiver.MyService"></service>
     </application>
 </manifest>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:id="@+id/idShare" android:title="@string/share" android:enabled="true"/>
+    <item android:id="@+id/idRateApp" android:title="@string/rate_app" android:enabled="true"></item>
+</menu>
