@@ -1,15 +1,23 @@
 package vn.niit.demosqlite.notes;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
@@ -25,7 +33,7 @@ public class ListNoteActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_note);
-        lst = findViewById(R.id.lst);
+        lst = (ListView)findViewById(R.id.lst);
         DBOpenHelper dbOpenHelper =new DBOpenHelper(getApplicationContext());
         SQLiteDatabase sql = dbOpenHelper.getWritableDatabase();
         Cursor cursor =sql.query("notes",new String[]{"id","content"},null,null,null,null,null);
@@ -38,7 +46,9 @@ public class ListNoteActivity extends Activity {
             } while (cursor.moveToNext());
         }
 
-       adapter = new NoteAdapter(getApplicationContext(),R.layout.item_note,notes);
+
+       // Log.e("TAG",notes.get(0).getContent());
+       adapter = new NoteAdapter(ListNoteActivity.this,R.layout.item_note,notes);
         sql.close();
        lst.setAdapter(adapter);
        btnAddNote = findViewById(R.id.btnAddNote);
@@ -54,6 +64,6 @@ public class ListNoteActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-
     }
+
 }

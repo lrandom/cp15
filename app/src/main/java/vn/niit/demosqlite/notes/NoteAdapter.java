@@ -10,15 +10,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 import vn.niit.demosqlite.R;
 
-public class NoteAdapter extends ArrayAdapter<ArrayList<Note>> {
+public class NoteAdapter extends ArrayAdapter<Note> {
     ArrayList<Note> notes;
+    Context context;
     public NoteAdapter(@NonNull Context context, int resource, ArrayList<Note>notes) {
-        super(context, resource);
+        super(context, resource, notes);
         this.notes = notes;
+        this.context  = context;
     }
 
     @NonNull
@@ -26,9 +30,9 @@ public class NoteAdapter extends ArrayAdapter<ArrayList<Note>> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View v = convertView;
         if(v==null){
-            v = LayoutInflater.from(getContext()).inflate(R.layout.item_note,null);
+            v = LayoutInflater.from(context).inflate(R.layout.item_note,parent,false);
         }
-        TextView tvContent = v.findViewById(R.id.txtNote);
+        TextView tvContent =(TextView) v.findViewById(R.id.txtNote);
         tvContent.setText(this.notes.get(position).getContent());
         return v;
     }
